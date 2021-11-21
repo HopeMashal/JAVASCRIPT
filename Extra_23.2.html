@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+        <div id="stopwatch">
+            00:00:00
+        </div>
+
+        <ul id="buttons">
+            <li><button onclick="startTimer()">Start</button></li>
+            <li><button onclick="stopTimer()">Stop</button></li>
+        </ul>
+
+        <script>
+            const timer = document.getElementById('stopwatch');
+
+                var min = 0;
+                var sec = 0;
+                var millsec = 0;
+                var stoptime = true;
+
+                function startTimer() {
+                if (stoptime == true) {
+                        stoptime = false;
+                        timerCycle();
+                    }
+                }
+                function stopTimer() {
+                if (stoptime == false) {
+                    stoptime = true;
+                }
+                }
+
+                function timerCycle() {
+                    if (stoptime == false) {
+                    millsec = parseInt(millsec);
+                    sec = parseInt(sec);
+                    min = parseInt(min);
+
+                    millsec = millsec + 1;
+
+                    if (millsec == 99) {
+                    sec = sec + 1;
+                    millsec = 0;
+                    }
+                    if (sec == 60) {
+                    min = min + 1;
+                    sec = 0;
+                    millsec = 0;
+                    }
+                    if(min == 60){
+                        stopTimer();
+                    }
+
+                    if (millsec < 10 || millsec == 0) {
+                    millsec = '0' + millsec;
+                    }
+                    if (sec < 10 || sec == 0) {
+                    sec = '0' + sec;
+                    }
+                    if (min < 10 || min == 0) {
+                    min = '0' + min;
+                    }
+
+                    timer.innerHTML = min + ':' + sec + ':' + millsec;
+
+                    setTimeout("timerCycle()", 7.9); // In calculation, 1000/(99+1)=10 is the correct, but it's slowly
+                }
+                }
+
+        </script>
+    
+</body>
+</html>
