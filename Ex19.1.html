@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <script>
+        const newli=document.createElement('li');
+        newli.innerText='new title';
+        newli.classList.add('start-here');
+        const ul=document.querySelector('ul');
+        ul.appendChild(newli);
+    </script> -->
+</head>
+<body>
+    <ul>
+        <li>title 1</li>
+        <li class="start-here">title 2</li>
+        <li>
+            <ul>
+                <li>sub title 1</li>
+                <li>sub title 2</li>
+                <li>sub title 3</li>
+            </ul>
+        </li>
+        <li>title 3</li>
+    </ul>
+    <div>
+        <p>Hello World!</p>
+    </div>
+    <script>
+        // Create a variable that holds the <li> element with the class “start-here”.
+            const newli=document.createElement('li');
+            newli.innerText='new title';
+            newli.classList.add('start-here');
+            const ul=document.querySelector('ul');
+            ul.appendChild(newli);
+
+        // 1. Change the text from “title 2” to “main title”
+            const li=document.querySelectorAll('li')[1];
+            li.innerText="main title";
+
+        // 2. Add another sub title with the text “sub title 4”
+            const mynewli=document.createElement('li');
+            mynewli.innerText='sub title 4';
+            const myul=document.querySelector('ul li ul');
+            myul.appendChild(mynewli);
+
+        // 3. Delete the last <li> element from the list.
+            // Delete the last <li> element from the original list
+            const lastli=document.querySelectorAll('li')[7];
+            ul.removeChild(lastli);
+            // Delete the last <li> element from the new list
+            /* const lastli1=document.querySelectorAll('li')[8];
+            ul.removeChild(lastli1); */
+
+        // 4. Change the <title> element text to “Master Of The Dom”.
+            document.querySelector('title').text='Master Of The Dom';
+
+        // 5. Change the text of the <p> element ot something else of your
+            const p=document.querySelector('p');
+            p.innerText='Helllllllllllllo!';
+
+    </script>
+</body>
+</html>
