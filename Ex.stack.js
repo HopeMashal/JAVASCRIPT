@@ -55,7 +55,7 @@ class ArrayQueue {
 //!OR
 
 
-/* class ListNode {
+class ListNode {
     constructor(value) {
       this.value = value;
       // this.maxItems = 10;
@@ -130,4 +130,4 @@ class ArrayQueue {
   
   head = removeFirst(head, 4);
   
-  logList(head); */
+  logList(head); 
