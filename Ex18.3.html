@@ -24,6 +24,19 @@
         const MyThirdDiv = document.getElementById("myThirdDiv");
         const MyFourthDiv = document.getElementById("myFourthDiv");
         console.log(MyFirstDiv,MySecondDiv,MyThirdDiv,MyFourthDiv);
+
+        
+        const Div=document.querySelectorAll('div');
+        console.dir(Div);
+        for(let element of Div){
+            const name=`${element.id}`;
+            console.log(name,element);
+        }
+        
+        const All = document.querySelectorAll('div');
+        const myObject = {};
+        All.forEach((element) => myObject[element.id]=element)
+        console.dir(myObject);
         
     </script>
 </body>
