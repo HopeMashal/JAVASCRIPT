@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 19.2</title>
+    <script>
+        const users = [
+            {
+                id: 167464,
+                firstName: "Jimmy",
+                lastName: "Arnold",
+                email: "jimmya@gmail.com",
+            },
+            {
+                id: 578447,
+                firstName: "Martha",
+                lastName: "Goldman",
+                email: "gold@hotmail.com",
+            },
+            {
+                id: 864578,
+                firstName: "Tim",
+                lastName: "Burton",
+                email: "timmy.hotmail.com",
+            },
+        ];
+        /* const array=[];
+        users.forEach(function(name){
+            array.push(name.firstName +' '+ name.lastName);
+        })
+        console.log(array); */            
+    </script>
+</head>
+<body>
+    <script>
+        //create div 
+        const body=document.querySelector('body');
+        const mydiv=document.createElement('div');
+        body.appendChild(mydiv);
+        //create ol
+        const myol=document.createElement('ol');
+        mydiv.appendChild(myol);
+        //creat li
+        users.forEach(function(name){
+            const  myli=document.createElement('li');
+            myol.appendChild(myli);
+            myli.innerText=`${name.firstName} ${name.lastName}`;
+            //Add data-id to li
+            myli.id=`${name.id}`;
+        })
+        //Remove the bullet points of the ordered list
+        document.querySelector('ol').style.listStyle= "none";
+
+    </script>
+    
+
+</body>
+</html>

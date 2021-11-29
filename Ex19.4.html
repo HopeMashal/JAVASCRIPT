@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .fab{
+            color:aqua;
+        }
+
+    </style>
+    <script src="https://kit.fontawesome.com/5c4607dc13.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <script>
+        //create div
+        const body=document.querySelector('body');
+        const mydiv=document.createElement('div');
+        body.appendChild(mydiv);
+        //creat h1
+        const myh1=document.createElement('h1');
+        myh1.innerHTML='Hello! My name is Amal';
+        mydiv.appendChild(myh1);
+        //creat h3
+        const myh3=document.createElement('h3');
+        myh3.innerHTML='I am an engineer';
+        mydiv.appendChild(myh3);
+        //create image
+        const myimg=document.createElement('img');
+        myimg.src="https://th.bing.com/th/id/OIP.89JH61eynSTi34uoW2gmqQHaEo?pid=ImgDet&rs=1";
+        myimg.style.width='500px';
+        mydiv.appendChild(myimg);
+        //create paragraph
+        const myp=document.createElement('p');
+        myp.innerHTML='I am Amal Mishael. I am 24 old. I am a graduate majoring in <mark>Mechatronics Engineering</mark>. I studied at Birzeit University. My hobbies are drawing and reading. I like to draw the <b>galaxy and space</b> a lot. <br> I hope to be one of the top ten web developers.';
+        mydiv.appendChild(myp);
+        //create h4
+        const myh4=document.createElement('h4');
+        myh4.innerHTML='Follow Me:';
+        mydiv.appendChild(myh4);
+        //create ul
+        const myul=document.createElement('ul');
+        mydiv.appendChild(myul);
+        //creat li1
+        const  myli1=document.createElement('li');
+        myli1.innerHTML='<span class="fab fa-twitter fa-3x"></span>';
+        myul.appendChild(myli1);
+        //creat li2
+        const  myli2=document.createElement('li');
+        myli2.innerHTML='<span class="fab fa-facebook fa-3x"></span>';
+        myul.appendChild(myli2);
+        //creat li1
+        const  myli3=document.createElement('li');
+        myli3.innerHTML='<span class="fab fa-linkedin fa-3x"></span>';
+        myul.appendChild(myli3);
+    </script>
+    
+</body>
+</html>

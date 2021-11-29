@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * { 
+            box-sizing: border-box; 
+        }
+        h1,h3{
+            text-align: center;
+        }
+        form {
+            border: 1px solid black;
+            padding: 20px;
+            width: 500px;
+        }
+        body {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+        }
+        .inputs {
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(6, 1fr);
+            margin-bottom: 10px;
+        }
+        .inputs > * {
+            border: 1px solid black;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            font-size: 20px;
+            line-height: 1;
+        }
+        input[type="submit"] {
+            background: black;
+            color: white;
+            font-size: 20px;
+            padding: 20px;
+            border: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <script>
+        //create main div
+        const body=document.querySelector('body');
+        const mydiv=document.createElement('div');
+        body.appendChild(mydiv);
+        //create h1
+        const myh1=document.createElement('h1');
+        myh1.innerHTML='Text to cope:';
+        mydiv.appendChild(myh1);
+        //create h3
+        const myh3=document.createElement('h3');
+        myh3.innerHTML='123456 <br><br><br>';
+        mydiv.appendChild(myh3);
+        //create form
+        const myform=document.createElement('form');
+        myform.name='verify';
+        mydiv.appendChild(myform);
+        //create div in form
+        const mydiv1=document.createElement('div');
+        mydiv1.classList='inputs';
+        myform.appendChild(mydiv1);
+        //create input in div in form
+        for(let i=1;i<=6;i++){
+        const myinput1=document.createElement('input');
+        myinput1.type='text';
+        myinput1.name=`n${i}`;
+        myinput1.maxLength="1";
+        mydiv1.appendChild(myinput1);}
+        //creat input in form
+        const myform1=document.createElement('input');
+        myform1.type='submit';
+        myform1.value='Verify';
+        myform.appendChild(myform1);
+
+
+        const form = document.querySelector('[name="verify"]');
+        const inputs = form.querySelectorAll('.inputs input');
+        function handleInput(e) {
+            const input = e.target;
+            if (input.nextElementSibling && input.value) {
+                input.nextElementSibling.focus();
+            }
+        }
+        function handlePaste(e) {
+            const paste = e.clipboardData.getData('text');
+            inputs.forEach((input, i) => {
+                console.log(input);
+                input.value = paste[i] || '';
+            });
+        }
+        inputs[0].addEventListener('paste', handlePaste);
+        form.addEventListener('input', handleInput);
+
+    </script>
+</body>
+</html>
