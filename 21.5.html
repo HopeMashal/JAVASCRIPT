@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h2>How many smiles do you want to see?</h2>
+  <input type="text" class="text">
+  <input type="submit" class="btn">
+  <br><br>
+  <div>
+  </div>
+  <script>
+    const div=document.querySelector('div');
+    const text=document.querySelector('.text');
+    const btn=document.querySelector('.btn');
+    btn.addEventListener('click',function(){
+        for(let i=0;i<text.value;i++){
+          const image=document.createElement('img');
+          image.src="https://images.emojiterra.com/google/android-10/512px/1f60a.png";
+          image.style.width='50px';
+          div.appendChild(image);
+        }
+    }) 
+    btn.addEventListener('click',function(){
+        if(isNaN(text.value)){
+          alert('Error!!! \n It is not a number');
+        }
+    })
+  </script>
+  
+</body>
+</html>
