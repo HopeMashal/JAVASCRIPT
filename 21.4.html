@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div{
+      width: 300px;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <img src="https://freepngimg.com/thumb/bulb/36712-7-light-bulb-clipart.png" width="200px">
+  </div>
+  <p></p>
+  <script>
+    const div=document.querySelector('div');
+    const image=document.querySelector('img');
+    const p=document.querySelector('p');
+    div.addEventListener('mouseover',function(){
+      div.style.backgroundColor="yellow";
+      p.innerText="LightBulb is ON";
+    })
+    div.addEventListener('mouseout',function(){
+      div.style.backgroundColor="gray";
+      p.innerText="LightBulb is OFF";
+    })
+  </script>
+</body>
+</html>
