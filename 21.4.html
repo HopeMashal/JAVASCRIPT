@@ -17,20 +17,17 @@
 </head>
 <body>
   <div>
-    <img src="https://freepngimg.com/thumb/bulb/36712-7-light-bulb-clipart.png" width="200px">
+    <img class="image" src='https://th.bing.com/th/id/R.03b81df34a971ddad072510a121d24fb?rik=6ENZkFFrwLpCyg&riu=http%3a%2f%2fcliparts101.com%2ffiles%2f819%2f4104E9A591CEC9FF39215485D2B4265B%2flight_bulb.png&ehk=t04CawTgtFMIXq8AXytxNnjFfjzO6uUoPi11mZVEwB0%3d&risl=&pid=ImgRaw&r=0'>
   </div>
-  <p></p>
   <script>
-    const div=document.querySelector('div');
-    const image=document.querySelector('img');
-    const p=document.querySelector('p');
-    div.addEventListener('mouseover',function(){
-      div.style.backgroundColor="yellow";
-      p.innerText="LightBulb is ON";
-    })
-    div.addEventListener('mouseout',function(){
-      div.style.backgroundColor="gray";
-      p.innerText="LightBulb is OFF";
+    const img=document.querySelector('.image');
+    img.addEventListener('click',function(){
+      if(img.src.match('OIP')){
+        img.src='https://th.bing.com/th/id/R.03b81df34a971ddad072510a121d24fb?rik=6ENZkFFrwLpCyg&riu=http%3a%2f%2fcliparts101.com%2ffiles%2f819%2f4104E9A591CEC9FF39215485D2B4265B%2flight_bulb.png&ehk=t04CawTgtFMIXq8AXytxNnjFfjzO6uUoPi11mZVEwB0%3d&risl=&pid=ImgRaw&r=0';
+      }
+      else{
+        img.src="https://th.bing.com/th/id/OIP.8yagujVfS31w_7CQb4-8EQAAAA?pid=ImgDet&w=214&h=292&c=7&dpr=1.5";
+      }
     })
   </script>
 </body>
