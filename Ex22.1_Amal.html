@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .confirmation {
+            display: none;
+            border: 1px solid black;
+            width:300px;
+            background: rgb(205, 255, 253);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <label>Name:</label> 
+          <input type="text" class="mytext" placeholder="Enter Your Name">
+        <br><br>
+        <label>Age:</label> 
+          <input type="text" class="mytext" placeholder="Enter Your Age">
+        <br><br>
+        <label>Email:</label>
+          <input type="email" class="mytext" placeholder="Enter Your Email">
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <div class="confirmation">
+        <p>Is all this information correct?</p>
+        <div>Name: <span class="input-text"></span></div>
+        <div>Age: <span class="input-text"></span></div>
+        <div>Email: <span class="input-text"></span></div>
+        <button class="confirm-btn">Confirm</button>
+        <button class="change-btn">Change Information</button>
+    </div>
+
+    <script>
+        const formElements = document.querySelector("form");
+        const submitBtn = document.querySelector('input[type="submit"]');
+        const allInputs = document.querySelectorAll(".mytext");
+        const confirmDiv = document.querySelector(".confirmation");
+        const allInputTexts = document.querySelectorAll(".input-text");
+        const confirmBtn = document.querySelector(".confirm-btn");
+        const changeBtn = document.querySelector(".change-btn");
+
+        submitBtn.addEventListener("click", () => {
+            event.preventDefault();
+            allInputs.forEach((element, index) => {
+                element.readOnly = true;
+                allInputTexts[index].textContent = element.value;
+            });
+            confirmDiv.style.display = "block";
+        });
+        confirmBtn.addEventListener("click", () => {
+          const msg=document.createElement('h1');
+          msg.innerText="congratulations you successfully sent this form";
+          document.body.appendChild(msg);
+          confirmDiv.style.display = "none";
+          setTimeout(time, 5000);
+        });
+        function time(){
+          formElements.submit();
+        }
+        changeBtn.addEventListener("click", () => {
+            allInputs.forEach((element) => {
+                element.readOnly = false;
+            });
+            confirmDiv.style.display = "none";
+        });
+    </script>
+</body>
+</html>

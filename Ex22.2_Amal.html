@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>22.2</title>
+</head>
+<body>
+  <form>
+    <input type="checkbox" class="checkbox" checked>
+  </form>
+  <img src="https://th.bing.com/th/id/R.f3d247eb57b29d24e2df8ba85b6826a9?rik=IgKl5jZLD7N2pA&pid=ImgRaw&r=0" width="300px">
+  <script>
+    const checkbox=document.querySelector('.checkbox');
+    const image=document.querySelector('img');
+    checkbox.addEventListener('click',function(){
+      if (checkbox.checked == true){
+        image.style.display = "block";
+      } else {
+        image.style.display = "none";
+      }
+    })
+  </script>
+</body>
+</html>
