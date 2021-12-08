@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <table width="600px" border="2px">
+    <!-- <caption>Star Wars</caption> -->
+    <thead>
+      <tr>
+        <th colspan="5" bgcolor="aqua">Star Wars</th>
+      </tr>
+      <tr bgcolor="paleturquoise">
+        <th>Name</th>
+        <th>Hair</th>
+        <th>Height</th>
+        <th>Planet Name</th>
+        <th>Planet Population</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+  </table>
+
+  <script>
+
+    const tbody=document.querySelector('tbody')
+
+    const  myArray = [];
+
+    async function createArray(){
+        for(let i=1; i<=10; i++){
+          const res = await fetch(`https://swapi.dev/api/people/${i}/`);
+          const data = await res.json();
+          const home = await fetch(`${data.homeworld}`);
+          const datahome = await home.json();
+          const tr=document.createElement('tr');
+          tr.innerHTML=`<td>${data.name}</td>
+                          <td>${data.hair_color}</td>
+                          <td>${data.height}</td>
+                          <td>${datahome.name}</td>
+                          <td>${datahome.population}</td>`;
+          tr.style.textAlign="center";
+          if(i%2==0){tr.bgColor="palegreen"}
+          else{tr.bgColor="aquamarine"}
+          tbody.appendChild(tr);
+          myArray.push(data);
+        }
+    }
+
+    createArray(); 
+    console.log(myArray);
+
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      color: #808080;
+      background-color: #eee;
+      user-select: none;
+      font-family: bariol, sans-serif;
+      padding-top: 20px;
+    }
+
+    h3,p {
+      margin: 0px;
+      font-size: 1.2em;
+    }
+
+    .container {
+      margin: 0px auto;
+      max-width: 90%;
+    }
+    .img-fluid {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .input-element {
+      border-color: aqua;
+      border-radius: 8px;
+      padding: 12px;
+      width: 80%;
+    }
+    .button-search{
+      width: 19%;
+      border-color: aqua;
+      border-radius: 8px;
+      padding: 12px;
+      background-color: rgba(0, 255, 255, 0.158);
+    }
+
+    /* Grid frame */
+    .row {
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-right: -6px;
+      margin-left: -6px;
+      margin-top: 20px;
+      display: flex;
+    }
+
+    .col-3div12 {
+      flex-basis: calc(3/12 * 100%);
+      padding-right: 6px;
+      padding-left: 6px;
+    }
+
+    .col-9div12 {
+      flex-basis: calc(9/12 * 100%);
+      padding-right: 6px;
+      padding-left: 6px;
+    }
+
+    /* UI elements */
+    .data-title {
+      font-size: 2em;
+      border-bottom: 1px solid #dbdbdb;
+      padding-bottom: 6px;
+    }
+
+    .data-text {
+      font-size: 1.4em;
+      margin-top: 16px;
+    }
+
+    /* card styling */
+    .card {
+      padding: 20px;
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 2px 2px 4px 0px rgba(0,0,0,.26);
+      margin-bottom: 10px;
+    }
+
+ 
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <input class="input-element" type="text">
+      <button class="button-search">Search</button>
+      <div class="result"></div>
+    </div>
+  </div>
+
+  <script>
+    const result = document.querySelector(".result");
+    const searchBtn = document.querySelector(".button-search");
+    const inputBtn = document.querySelector(".input-element");
+
+    searchBtn.addEventListener("click", function () {
+        getFetch();
+      });
+
+    async function  getFetch(){
+
+        result.innerHTML="";
+        movieName = inputBtn.value;
+        movieName = movieName.split(" ").join('+');
+        console.log(movieName);
+
+        const res = await fetch(`http://www.omdbapi.com/?apikey=7b76035d&t=${movieName}`);
+        const data= await res.json();    
+        console.log(data);
+        creatMovie(data);
+    }
+
+    function creatMovie(data){
+      result.innerHTML =`
+                <div class="row">
+                  <div class="col-3div12">
+                    <img class="img-fluid" src="${ data.Poster }" />
+                  </div>
+                  <div class="col-9div12">
+                    <h3 class="data-title">${ data.Title } </h3>
+                    <div style="margin-top: 16px">
+                      <p class="data-text">Genre: ${ data.Genre }</p>
+                      <p class="data-text">Year: ${ data.Year }</p>
+                      <p class="data-text">Plot: ${ data.Plot }</p>
+                      <p class="data-text">Director: ${ data.Director }</p>
+                      <p class="data-text">Actors: ${ data.Actors }</p>
+                      <div class="Rating"></div>
+                    </div>
+                  </div>
+                </div>
+              `;
+              const ratings = document.createElement('p');
+              ratings.classList.add('data-text')
+              const Myrat = document.querySelector('.Rating');
+              ratings.innerText="Ratings: ";
+              for(let i = 0; i<data.Ratings.length; i++){
+                  ratings.innerText += ` ${i+1}- the ${data.Ratings[i].Source} is: ${data.Ratings[i].Value} `;
+              }
+              Myrat.appendChild(ratings);
+    }
+  </script>
+  
+</body>
+</html>

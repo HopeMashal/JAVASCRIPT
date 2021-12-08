@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      color: #808080;
+      background-color: #eee;
+      user-select: none;
+      font-family: bariol, sans-serif;
+      padding-top: 20px;
+    }
+
+    h3,p {
+      margin: 0px;
+      font-size: 1.2em;
+    }
+
+    .container {
+      margin: 0px auto;
+      max-width: 90%;
+    }
+
+    .title {
+      font-size: 3em;
+      border-bottom: 1px solid #dbdbdb;
+      padding-bottom: 4px;
+      margin-bottom: 10px;
+    }
+
+    .img-fluid {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .input-element {
+      border-color: aqua;
+      border-radius: 8px;
+      padding: 12px;
+      width: 80%;
+    }
+    .button-search{
+      width: 19%;
+      border-color: aqua;
+      border-radius: 8px;
+      padding: 12px;
+      background-color: rgba(0, 255, 255, 0.158);
+    }
+
+    /* Grid frame */
+    .row {
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-right: -6px;
+      margin-left: -6px;
+      margin-top: 20px;
+      display: flex;
+    }
+
+    .col-3div12 {
+      flex-basis: calc(3/12 * 100%);
+      padding-right: 6px;
+      padding-left: 6px;
+    }
+
+    .col-9div12 {
+      flex-basis: calc(9/12 * 100%);
+      padding-right: 6px;
+      padding-left: 6px;
+    }
+
+    /* UI elements */
+    .data-title {
+      font-size: 2em;
+      border-bottom: 1px solid #dbdbdb;
+      padding-bottom: 6px;
+    }
+
+    .data-text {
+      font-size: 1.4em;
+      margin-top: 16px;
+    }
+
+    .data-badge {
+      display: inline-block;
+      border-radius: 8px;
+      padding: 10px;
+      background-color: rgb(113, 204, 204);
+      color: #fff;
+      margin-right: 10px;
+    }
+
+    /* card styling */
+    .card {
+      padding: 20px;
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 2px 2px 4px 0px rgba(0,0,0,.26);
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      margin: 14px 0px;
+      padding: 10px 16px;
+      font-size: 1.2em;
+      background-color: rgb(82, 173, 173);
+      color: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 2px 2px 4px 0px rgba(0,0,0,.26);
+    }
+ 
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <form id="search-form">
+        <input class="input-element" id="username" type="text" placeholder="Enter the username"/>
+        <button class="button-search">Search</button>
+      </form>
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <script>
+    document.onreadystatechange = function () {
+
+    // Fetch method
+    function fetchData() {
+      // Get username from input box
+      var username = document.querySelector('#username').value;
+      
+      // Ajax call
+      var request = new XMLHttpRequest();
+      request.open('GET', 'https://api.github.com/users/' + username);
+      request.onreadystatechange = function () {
+        if (request.readyState == 4 ) {
+          if (request.status === 200) {
+            var data = JSON.parse(request.responseText);
+
+            if (data.message !== 'Not Found') {
+              result.innerHTML =`
+                <div class="row">
+                  <div class="col-3div12">
+                    <img class="img-fluid" src="${ data.avatar_url }" />
+                  </div>
+                  <div class="col-9div12">
+                    <h3 class="data-title">${ data.name } </h3>
+                    <div style="margin-top: 16px">
+                      <div class="data-badge">Repositories ${ data.public_repos }</div>
+                    </div>
+                    <div>
+                      <div>
+                        <button class="btn" onClick="window.open('${ data.html_url }');">View ${ data.name }'s profile</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              `;
+            }		
+          }  else {
+            alert('No users found!')
+          }
+        }
+      }
+      request.send();
+    }
+
+    /* wait for the contents to load */
+    if (document.readyState === 'complete') {
+      var result = document.querySelector('#result');
+      var searchForm = document.querySelector('#search-form');
+      var searchbtn = document.querySelector('.button-search');
+      
+      searchForm.addEventListener('submit', function (e) {
+        e.preventDefault()
+        fetchData()
+      });
+      searchbtn.addEventListener('click', function (e) {
+        e.preventDefault()
+        fetchData()
+      });
+    }
+    }
+  </script>
+  
+</body>
+</html>
